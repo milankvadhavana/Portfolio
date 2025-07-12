@@ -5,19 +5,35 @@
 
 <main class="main dark-background">
   <!-- Hero Section -->
+  <div id="particles-js"></div> 
   <section id="hero" class="hero  ">
       <div class="video-container">
         <video autoplay muted loop class="background-video">
           <source src="{% static 'assets/img/vecteezy_network-connections-technology-digital-cyberspace-and_52182020.mov' %}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-        <div class="container overlay" data-aos="fade-up" data-aos-delay="100">
-          <h2>Milan K  Vadhavana</h2>
-          <p>
-            I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Developer</span>
-            <span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span>
-          </p>
+        <div class="container overlay hero-section" data-aos="fade-up" data-aos-delay="100">
+    <div class="hero-content">
+        <h2 class="hero-title">Milan K Vadhavana</h2>
+        <div class="hero-subtitle">
+            <p>
+                I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Developer</span>
+                <span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span>
+            </p>
         </div>
+        <div class="hero-social">
+            <a href="https://github.com/milankvadhavana" class="social-icon" target="_blank" aria-label="GitHub">
+                <i class="bi bi-github"></i>
+                <span class="social-tooltip">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/milan-vadhavana-b9960323a/" class="social-icon" target="_blank" aria-label="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+                <span class="social-tooltip">LinkedIn</span>
+            </a>
+        </div>
+    </div>
+</div>
+        
       </div>
   </section>
   <!-- Hero Section -->
@@ -29,8 +45,12 @@
     <div class="container" data-aos="fade-up" data-aos-delay="">
       <div class="row gy-4 justify-content-center">
         <div class="col-lg-4">
-          <img src="{{ about.image.url }}" class="img-fluid" alt="">
+        <div class="about-image-container">
+            <img src="{{ about.image.url }}" class="img-fluid rounded-4 shadow-lg" alt="Profile Image">
+            <div class="image-overlay"></div>
+            <div class="image-border"></div>
         </div>
+      </div>
         <div class="col-lg-8 content pt-3">
           <h2>{{ about.name }}</h2>
           <p class="fst-italic py-3">{{ about.description_short }}</p>
@@ -88,7 +108,7 @@
     <div class="container"data-aos="fade-up">
       <div class="row align-items-center">
         <!-- Left Content -->
-        <div class="col-lg-6">
+        <div class="col-lg-10">
           <div class="section-heading mb-3">
             <div class="section-title " >
               <h2>Skills</h2>
@@ -104,9 +124,9 @@
             </div>      
         </div>  
         <!-- Right Image -->
-        <div class="col-lg-6 text-center">
+        {% comment %} <div class="col-lg-6 text-center">
           <img src="{% static 'assets\img\istockphoto-1393379238-612x612 (1).jpg' %}" class="img-fluid" alt="Skills Image">
-        </div> 
+        </div>  {% endcomment %}
       </div>
     </div>
 </section>
@@ -122,10 +142,10 @@
         {% for project in projects %}
         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
           <div class="portfolio-content">
-            <img src="{{ project.thumbnail.url }}" class="img-fluid" alt="{{ project.title }}">
+            <img src="{{ project.thumbnail.url }}" class="img-fluid"   alt="{{ project.title }}">
             <div class="portfolio-info">
               <h4>{{ project.title }}</h4>
-              <a href="{{ project.thumbnail.url }}" title="{{ project.title }}" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+              {% comment %} <a href="{{ project.thumbnail.url }}" title="{{ project.title }}" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a> {% endcomment %}
               <a href="{% url 'project_details' project.id %}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
             </div>
           </div>

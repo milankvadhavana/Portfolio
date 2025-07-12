@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+/* Modern Color Scheme */
+:root {
+  --primary: #2563eb;
+  --secondary: #7c3aed;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --accent: #f59e0b;
+}
+
+/* Smooth animations */
+[data-aos] {
+  transition: all 0.6s ease;
+}
+
+/* Project Card Hover Effect */
+.project-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Skill Wheel Animation */
+.skill-wheel {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.segment {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 50%, 100% 50%, 100% 0);
+  transform-origin: center;
+}
+{%endblock head %}
+
+{% block body %}
+
+<main class="main dark-background">
+  <!-- Hero Section -->
+  <!-- Enhanced Hero Section -->
+<section id="hero" class="hero">
+  <div class="video-container">
+    <video autoplay muted loop class="background-video">
+      <source src="{% static 'assets/img/network-video.mov' %}" type="video/mp4">
+    </video>
+    <div class="container overlay" data-aos="fade-up">
+      <h1>Milan K Vadhavana</h1>
+      <p class="dynamic-text">
+        I'm <span class="typed" data-typed-items="Full Stack Developer,Python/Django Specialist,Web Designer,Problem Solver"></span>
+      </p>
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline-light">Hire Me</a>
+      </div>
+      <div class="hero-social">
+        <a href="#"><i class="bi bi-github"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Hero Section -->
+  <!-- About Section -->
+  <!-- Enhanced About Section -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="profile-card">
+          <img src="{{ about.image.url }}" class="profile-img">
+          <div class="profile-info">
+            <h3>{{ about.name }}</h3>
+            <p>{{ about.degree }}</p>
+            <div class="personal-info">
+              <p><i class="bi bi-envelope"></i> {{ about.email }}</p>
+              <p><i class="bi bi-geo-alt"></i> {{ about.city }}</p>
+              <p><i class="bi bi-phone"></i> {{ about.phone }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-description">{{ about.description_long }}</p>
+        
+        <div class="skill-bars">
+          <h4>Core Skills</h4>
+          {% for skill in core_skills %}
+          <div class="progress-item">
+            <div class="progress-info">
+              <span>{{ skill.name }}</span>
+              <span>{{ skill.percentage }}%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="width: {{ skill.percentage }}%"></div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- /About Section -->
+  <section id="education" class="resume section">
+    <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Education</h2>
+      </div>
+      <section class="education" data-aos="fade-up" data-aos-delay="1000">
+        <div class="timeline">
+          <div class="timeline-container">
+            {% for edu in education %}
+            <div class="timeline-item">
+              <div class="timeline-year">{{ edu.year }} :</div>
+              <div class="timeline-content">
+                <h5><em>{{ edu.institute_name }}</em></h5>
+                <p><strong>Degree:</strong> {{ edu.degree }}</p>
+                <p><strong>Percentage:</strong> {{ edu.percentage }}%</p>
+                <p><strong>Grade:</strong> {{ edu.grade }}</p>
+                {% comment %} <p><strong>Class:</strong> {{ edu.class_name }}</p> {% endcomment %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+       
+  </section><!-- /Resume Section -->
+  
+  <!-- Skills Section -->
+  <!-- Enhanced Skills Section -->
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">Technical Skills</h2>
+    
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="skill-wheel">
+          <!-- This would be implemented with CSS/JS -->
+          <div class="wheel">
+            <div class="segment" data-skill="Frontend">
+              <span>Frontend</span>
+            </div>
+            <div class="segment" data-skill="Backend">
+              <span>Backend</span>
+            </div>
+            <!-- More segments -->
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="skills-details">
+          <div class="skill-category">
+            <h3>Frontend Development</h3>
+            <div class="skill-items">
+              {% for skill in frontend_skills %}
+              <div class="skill-item">
+                <img src="{{ skill.icon.url }}">
+                <span>{{ skill.name }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Backend Development</h3>
+            <div class="skill-items">
+              {% for skill in backend_skills %}
+              <div class="skill-item">
+                <img src="{{ skill.icon.url }}">
+                <span>{{ skill.name }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- End Skills Item -->
+  <!-- Resume Section -->
+  <!-- Portfolio Section -->
+  <!-- Enhanced Projects Section -->
+<section id="portfolio" class="portfolio">
+  <div class="container">
+    <h2 class="section-title">My Projects</h2>
+    
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web Development</button>
+      <button class="filter-btn" data-filter="app">Applications</button>
+      <button class="filter-btn" data-filter="design">UI/UX</button>
+    </div>
+    
+    <div class="projects-grid">
+      {% for project in projects %}
+      <div class="project-card" data-category="{{ project.category }}">
+        <div class="project-img">
+          <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}">
+          <div class="project-links">
+            <a href="{% url 'project_details' project.id %}" class="details-link">
+              <i class="bi bi-eye"></i>
+            </a>
+            {% if project.live_url %}
+            <a href="{{ project.live_url }}" class="live-link" target="_blank">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>{{ project.title }}</h3>
+          <div class="project-tags">
+            {% for tag in project.tags.all %}
+            <span class="tag">{{ tag.name }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+  <!-- /Portfolio Section -->
+  <!-- certificate Section -->
+  <section id="certificate" class="certificate section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Certificates</h2>
+    </div><!-- End Section Title -->
+    <div class="container">
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+                {% for certificate in certificates %}
+                <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                    <div class="certificate-content">
+                        <img src="{{ certificate.image.url }}" class="img-fluid" alt="{{ certificate.name }}">
+                        <div class="certificate-info">
+                            <h4>{{ certificate.name }}</h4>
+                            <p>{{ certificate.description }}</p>
+                            <a href="{{ certificate.image.url }}" title="{{ certificate.name }}" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- End Portfolio Item -->
+            </div>
+            <!-- End Certificate Section -->
+        </div>
+    </div>
+</section>
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+  <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Contact</h2>
+      <p></p>
+    </div><!-- End Section Title -->
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <div class="info-wrap">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>Rambag Colony,Kothrud,Pune Maharashra</p>
+              </div>
+            </div> 
+          </div> 
+        </div>
+        <div class="col-lg-4">
+          <div class="info-wrap">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+91 9016304645</p>
+              </div>
+            </div> 
+          </div> 
+        </div>
+        <div class="col-lg-4">
+          <div class="info-wrap">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>milanvadhavana@gmail.com</p>
+              </div>
+            </div> 
+          </div> 
+        </div>
+      </div>
+    </div>
+  </section><!-- /Contact Section -->
+</main>
+{% endblock body %}
